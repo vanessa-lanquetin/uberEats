@@ -1,0 +1,27 @@
+name: Publish to Registry
+on:    
+  push:
+    tags:
+      - '*'
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+      
+    - name: Npm i
+      run: npm ci
+      
+    - name: Build
+      run: npm run build
+
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        pre: echo ::save-state name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
+        name: vanessa-lanquetin/registry/uberEats
+        username: ${{ secrets.DOCKER_HUB_USER }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        registry: docker.pkg.github.com
+        tags: "latest,${{ env.STATE_RELEASE_VERSION }}"
