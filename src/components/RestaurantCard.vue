@@ -1,21 +1,40 @@
 <template>
-  <div class="restaurant--card">
-    <div class="restaurant--image"></div>
+  <div  class="restaurant--card">
+    <div :style="changeBackground" class="restaurant--image"></div>
     <div class="restaurant--informations">
       <div class="top">
-        <p class="name">Subway</p>
+        <p class="name">
+          <!-- Quand on doit utiliser des données qui ne sont pas brut il faut {{  }} -->
+          {{ info_restaurant.name }}
+        </p>
         <p class="note">
-          <span>4.5</span>
+          <span>{{ info_restaurant.note }}</span>
         </p>
       </div>
-      <p class="time">20-30mn</p>
+      <p class="time">{{ info_restaurant.drive_time }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import { computed} from 'vue'
 export default {
   name:"RestaurantCard",
+  props: {
+    info_restaurant: Object
+  },
+  setup (props) {
+    const changeBackground = computed(
+      () => {
+      return {
+        backgroundImage:`url(${props.info_restaurant.image})`
+      }
+    }
+    )
+    return {
+      changeBackground
+    }
+  }
 };
 </script>
 
