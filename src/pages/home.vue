@@ -127,12 +127,14 @@ export default {
 
 <style lang="scss">
 .home {
+  padding-bottom: 50px;
   .header {
     height: 120px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
 
     img {
       width: 200px;
@@ -188,6 +190,15 @@ export default {
     background-image: url("../assets/banniere.png");
     background-size: cover;
     background-position: center center;
+    margin-bottom: 50px;
+  }
+}
+
+@media screen and (max-width:750px) {
+  .header{
+    display: flex;
+    flex-direction: column;
+    padding: 50px 0;
   }
 }
 </style>
