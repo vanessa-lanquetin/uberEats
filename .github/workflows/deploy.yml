@@ -20,7 +20,7 @@ jobs:
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
         pre: echo ::save-state name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
-        name: vanessa-lanquetin/registry/uberEats
+        name: clabroche/docker-registry/uberEats
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
         registry: docker.pkg.github.com
